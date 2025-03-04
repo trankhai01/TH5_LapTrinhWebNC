@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script>
+        function updateQuantity(productId, quantity) {
+            fetch(`/cart/update/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `quantity=${quantity}`
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <%- include('layouts/header') %>
+    <div class="cart-container">
+        <h2>Giỏ hàng</h2>
+    
+        <% if (cart.length > 0) { %>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td><img src="<%= item.image %>" class="cart-img"></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.price.toLocaleString() %> VNĐ</td>
+                            <td>
+                                <input type="number" name="quantity" value="<%= item.quantity %>" min="1" class="form-control w-50" 
+                                    onchange="updateQuantity('<%= item._id %>', this.value)">
+                            </td>
+                            <td>
+                                <form action="/cart/remove/<%= item.id %>" method="POST">
+                                    <button type="submit" class="remove-btn">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>Giỏ hàng trống. Hãy thêm sản phẩm!</p>
+        <% } %>
+    </div>
+    <%- include('layouts/footer') %>    
+</body>
+</html>
+
+
+
+

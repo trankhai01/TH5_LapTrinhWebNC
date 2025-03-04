@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <form action="/products/add" method="POST" class="product-form">
+        <h2>Thêm sản phẩm mới</h2>
+    
+        <label for="name">Tên sản phẩm:</label>
+        <input type="text" name="name" class="form-input" placeholder="Nhập tên sản phẩm" required>
+    
+        <label for="price">Giá:</label>
+        <input type="number" name="price" class="form-input" placeholder="Nhập giá sản phẩm" required>
+    
+        <label for="image">URL ảnh:</label>
+        <input type="text" name="image" class="form-input" placeholder="Nhập URL hình ảnh" required>
+    
+        <label for="description">Mô tả:</label>
+        <textarea name="description" class="form-textarea" placeholder="Nhập mô tả sản phẩm"></textarea>
+    
+        <button type="submit" class="submit-btn">Thêm sản phẩm</button>
+    </form>
+</body>
+</html>
+
+

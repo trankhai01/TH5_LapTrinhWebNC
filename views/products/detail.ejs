@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <%- include('../layouts/header') %>
+
+<div class="product-detail">
+    <h2><%= product.name %></h2>
+    <img src="<%= product.image %>" alt="<%= product.name %>">
+    <p>Giá: <strong><%= product.price %> VNĐ</strong></p>
+    <p><%= product.description %></p>
+
+    <form action="/cart/add/<%= product._id %>" method="POST">
+        <button type="submit"> Thêm vào giỏ hàng</button>
+    </form>
+    <a href="/products">⬅ Quay lại danh sách</a>
+</div>
+
+<%- include('../layouts/footer') %>
+</body>
+</html>
+
